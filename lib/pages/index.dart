@@ -31,9 +31,9 @@ class IndexPage extends StatelessWidget {
 
       return Scaffold(
         backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),//app背景色
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.red[900],
-          type: BottomNavigationBarType.fixed,
+        bottomNavigationBar: CupertinoTabBar(
+          iconSize: 25,
+          activeColor: Colors.red[900],
           onTap: (index) {
             Provide.value<IndexState>(context).changeIndex(index);
           },
