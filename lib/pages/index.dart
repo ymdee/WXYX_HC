@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
-import '../provide/indexState.dart';
+import '../provide/indexProvide.dart';
 import 'home/home.dart';
 import 'category/category.dart';
 import 'cart/cart.dart';

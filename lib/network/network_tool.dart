@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
 import 'api.dart';
+import 'dart:convert';
 
 class DioShareInstance {
   final Dio dio = new Dio();
@@ -12,7 +13,8 @@ class DioShareInstance {
   static DioShareInstance shareInstance() {
     if (_instance == null) {
       _instance = new DioShareInstance();
-      _instance.dio.options.headers.addAll({'X-WX-3RD-Session':'f677e22095e77473de9fe97658e46415'});
+      _instance.dio.options.headers
+          .addAll({'X-WX-3RD-Session': 'f677e22095e77473de9fe97658e46415'});
       //抓包配置
       // (_instance.dio.httpClientAdapter as DefaultHttpClientAdapter)
       //     .onHttpClientCreate = (client) {
@@ -29,24 +31,27 @@ class DioShareInstance {
   }
 }
 
-Future networkPost(String url,{paramas}) async {
+Future networkPost(String url, {paramas}) async {
   try {
-    print('开始获取url: ${serviceUrl+url} 数据\n');
+    print('开始获取url: ${serviceUrl + url} 数据\n');
     if (paramas != null) {
       print('参数：==================>$paramas\n');
     }
     Response response;
     Dio dio = DioShareInstance.shareInstance().dio;
     if (paramas == null) {
-      response = await dio.post(serviceUrl+url);
+      response = await dio.post(serviceUrl + url);
     } else {
-      response = await dio.post(serviceUrl+url,data: paramas);
+      response = await dio.post(serviceUrl + url, data: paramas);
     }
 
     if (response.statusCode == 200) {
       if (response.data['code'] == '200') {
         print('请求成功:=================>${response.data['data']}\n');
-        return response.data['data'];
+
+        var responseDecode = json.decode(response.data['data'].toString());
+
+        return responseDecode;
       } else {
         print('msg:=================>${response.data['msg']}\n');
       }
@@ -59,24 +64,26 @@ Future networkPost(String url,{paramas}) async {
   }
 }
 
-Future networkGet(String url,{paramas}) async {
+Future networkGet(String url, {paramas}) async {
   try {
-    print('开始获取 ${serviceUrl+url}} 数据');
+    print('开始获取 ${serviceUrl + url}} 数据');
     if (paramas != null) {
       print('参数：==================>$paramas');
     }
     Response response;
     Dio dio = DioShareInstance.shareInstance().dio;
     if (paramas == null) {
-      response = await dio.get(serviceUrl+url);
+      response = await dio.get(serviceUrl + url);
     } else {
-      response = await dio.get(serviceUrl+url,queryParameters: paramas);
+      response = await dio.get(serviceUrl + url, queryParameters: paramas);
     }
 
     if (response.statusCode == 200) {
       if (response.data['code'] == '200') {
         print('请求成功:=================>\n${response.data['data']}');
-        return response.data['data'];
+        var data = response.data['data'];
+
+        return data;
       } else {
         print('msg:=================>\n${response.data['msg']}');
       }
