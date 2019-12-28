@@ -69,8 +69,7 @@ class HomeRecommend extends StatelessWidget {
 
       //Image.network(item.listPicUrl));
     } else {
-      //widgetList.add(Image.network(item.picUrl));
-      CachedNetworkImage(
+      widgetList.add(CachedNetworkImage(
           imageUrl: item.picUrl,
           placeholder: (context, url) {
             return Image.asset(
@@ -81,7 +80,7 @@ class HomeRecommend extends StatelessWidget {
             return Image.asset(
               'images/default_goods.jpeg',
             );
-          });
+          }));
     }
 
     //描述
