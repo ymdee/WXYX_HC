@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="wyyx_hc"
+        android:label="网易严选（仿）"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

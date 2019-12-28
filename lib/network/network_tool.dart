@@ -95,3 +95,35 @@ Future networkGet(String url, {paramas}) async {
     return print('ERROR:=================>$e');
   }
 }
+
+  Future networkGetHostChange(String url, {paramas}) async {
+  try {
+    print('开始获取 ${serviceUrl1 + url}} 数据');
+    if (paramas != null) {
+      print('参数：==================>$paramas');
+    }
+    Response response;
+    Dio dio = DioShareInstance.shareInstance().dio;
+    if (paramas == null) {
+      response = await dio.get(serviceUrl1 + url);
+    } else {
+      response = await dio.get(serviceUrl1 + url, queryParameters: paramas);
+    }
+
+    if (response.statusCode == 200) {
+      if (response.data['code'] == '200') {
+        print('请求成功:=================>\n${response.data['data']}');
+        var data = response.data['data'];
+
+        return data;
+      } else {
+        print('msg:=================>\n${response.data['msg']}');
+      }
+      return response.data;
+    } else {
+      throw Exception('接口异常');
+    }
+  } catch (e) {
+    return print('ERROR:=================>$e');
+  }
+  }
