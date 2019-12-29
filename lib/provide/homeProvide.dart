@@ -6,12 +6,12 @@ import '../network/api.dart';
 import '../network/network_tool.dart';
 
 class HomeProvide with ChangeNotifier {
-  int searchCount;
-  HomeModel homeModel;
-  HomeGroupModel groupModel;
-  HomeRecGoodsModel recGoodsModel;
-  Color searchBarBackColor = Color(0xFFAA3A1A);
-  int lastItemId = 0; //分页需要
+  int searchCount;//搜索框数量
+  HomeModel homeModel;//首页主要model
+  HomeGroupModel groupModel;//拼团model
+  HomeRecGoodsModel recGoodsModel;//推荐商品model
+  Color searchBarBackColor = Color(0xFFAA3A1A);//搜索条默认背景色
+  int lastItemId = 0; //推荐最后一个商品id，分页需要
 
 //获取首页数据
   getHomeData() async {

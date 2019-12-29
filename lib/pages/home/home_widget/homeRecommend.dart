@@ -213,15 +213,26 @@ class HomeRecommend extends StatelessWidget {
         child: Row(
           children: <Widget>[
             ClipOval(
-              child: Image.network(
-                item.comments.first.picList != null
-                    ? item.comments.first.picList.first
-                    : '',
-                width: ScreenUtil().setWidth(30),
-                height: ScreenUtil().setWidth(30),
-                fit: BoxFit.cover,
-              ),
-            ),
+                child: CachedNetworkImage(
+              imageUrl: item.comments.first.picList != null
+                  ? item.comments.first.picList.first
+                  : '',
+              placeholder: (context, url) {
+                return Image.asset(
+                  'images/default_head.jpeg',
+                  width: ScreenUtil().setWidth(30),
+                );
+              },
+              errorWidget: (context, url, obj) {
+                return Image.asset(
+                  'images/default_head.jpeg',
+                  width: ScreenUtil().setWidth(30),
+                );
+              },
+              width: ScreenUtil().setWidth(30),
+              height: ScreenUtil().setWidth(30),
+              fit: BoxFit.cover,
+            )),
             Container(
               width: ScreenUtil().setWidth(280),
               margin: EdgeInsets.only(left: 3),

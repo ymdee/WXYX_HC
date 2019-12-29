@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:wyyx_hc/pages/home/model/homeModel.dart';
 import '../../../provide/homeProvide.dart';
-import '../../../provide/homeProvide.dart';
 
 class HomeSearchBar extends StatelessWidget {
   @override

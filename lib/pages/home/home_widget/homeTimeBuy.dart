@@ -64,7 +64,7 @@ Widget _title(context) {
 Widget _timeBuyList(context) {
   HomeModel homeModel = Provide.value<HomeProvide>(context).homeModel;
 
-  Widget _groupItem(ItemList item) {
+  Widget _item(ItemList item) {
     return InkWell(
       onTap: () {
         //点击商品
@@ -127,7 +127,7 @@ Widget _timeBuyList(context) {
       itemExtent: ScreenUtil().setWidth(168),
       itemCount: homeModel.timePurchaseItems.itemList.length,
       itemBuilder: (BuildContext context, int index) {
-        return _groupItem(homeModel.timePurchaseItems.itemList[index]);
+        return _item(homeModel.timePurchaseItems.itemList[index]);
       },
     ),
   );

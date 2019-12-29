@@ -4,6 +4,7 @@ import 'package:provide/provide.dart';
 import 'package:wyyx_hc/pages/home/model/homeModel.dart';
 import '../../../provide/homeProvide.dart';
 import '../../../base/baseProcessBar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeTopNavi extends StatefulWidget {
   @override
@@ -76,7 +77,8 @@ class _HomeTopNaviState extends State<HomeTopNavi> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(bottom: 6),
-              child: Image.network(item.picUrls.first,
+              child: CachedNetworkImage(
+                  imageUrl: item.picUrls.first,
                   width: ScreenUtil().setWidth(90)),
             ),
             Text(

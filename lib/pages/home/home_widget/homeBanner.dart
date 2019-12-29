@@ -39,6 +39,7 @@ class HomeBanner extends StatelessWidget {
         },
         autoplay: true,
         onIndexChanged: (index) {
+          //监听banner滑动，获取后台给的bannner对应颜色
           String color = homeModel.focus[index].backgroundColor;
           String tempColor = '0xFF' + color.substring(1);
           Provide.value<HomeProvide>(context)
