@@ -12,7 +12,7 @@ class HomeBanner extends StatelessWidget {
     HomeModel homeModel = Provide.value<HomeProvide>(context).homeModel;
 
     return Container(
-      height: ScreenUtil().setHeight(350),
+      height: ScreenUtil().setWidth(350),
       child: Swiper(
         duration: 300,
         pagination: SwiperPagination(),

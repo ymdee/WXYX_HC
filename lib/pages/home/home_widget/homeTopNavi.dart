@@ -43,7 +43,7 @@ class _HomeTopNaviState extends State<HomeTopNavi> {
 
     return Container(
       margin: EdgeInsets.only(top: 10),
-      height: ScreenUtil().setHeight(270),
+      height: ScreenUtil().setWidth(270),
       child: GridView.builder(
         controller: _scrollController,
         shrinkWrap: true,

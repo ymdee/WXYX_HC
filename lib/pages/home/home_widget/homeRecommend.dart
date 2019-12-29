@@ -38,7 +38,6 @@ class HomeRecommend extends StatelessWidget {
         crossAxisCount: 4,
         itemCount: homeRecGoodsModel.rcmdItemList.length,
         itemBuilder: (BuildContext context, int index) => new Container(
-          color: Colors.white,
           child: _item(homeRecGoodsModel.rcmdItemList[index].categoryItem ??
               homeRecGoodsModel.rcmdItemList[index].pinItem),
         ),
@@ -249,15 +248,17 @@ class HomeRecommend extends StatelessWidget {
       ));
     }
 
-    return Container(
-      //alignment: Alignment.topLeft,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: widgetList,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          //borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widgetList,
+        ),
       ),
     );
   }
