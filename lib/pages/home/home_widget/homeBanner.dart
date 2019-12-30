@@ -15,7 +15,9 @@ class HomeBanner extends StatelessWidget {
       height: ScreenUtil().setWidth(350),
       child: Swiper(
         duration: 300,
-        pagination: SwiperPagination(),
+        pagination: SwiperPagination(builder: DotSwiperPaginationBuilder(
+          activeColor: Colors.red
+        )),
         itemCount: homeModel.focus.length,
         itemBuilder: (context, index) {
           return GestureDetector(

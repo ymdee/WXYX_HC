@@ -48,32 +48,43 @@ class _HomePageState extends State<HomePage>
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Provide<HomeProvide>(builder: (context, child, val) {
-            return EasyRefresh(
-              enableControlFinishLoad: true,
-              controller: _controller,
-              child: ListView(
-                shrinkWrap: true,
-                children: <Widget>[
-                  HomeSearchBar(),
-                  HomeBanner(),
-                  HomeTopNavi(),
-                  HomeGroup(),
-                  HomeTimeBuy(),
-                  HomeRecommend()
-                ],
-              ),
-              onLoad: () async {
-                HomeProvide homeProvide = Provide.value<HomeProvide>(context);
-                await homeProvide.getRecommendGoods();
-                _controller.finishLoad(
-                    success: true, noMore: !homeProvide.recGoodsModel.hasMore);
-              },
-              footer: ClassicalFooter(
-                bgColor: Colors.white,
-                textColor: Colors.black,
-                infoColor: Colors.black,
-              ),
-            );
+            HomeProvide homeProvide = Provide.value<HomeProvide>(context);
+
+            if (homeProvide.homeModel != null &&
+                homeProvide.groupModel != null &&
+                homeProvide.recGoodsModel != null) {
+              return EasyRefresh(
+                enableControlFinishLoad: true,
+                controller: _controller,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    HomeSearchBar(),
+                    HomeBanner(),
+                    HomeTopNavi(),
+                    HomeGroup(),
+                    HomeTimeBuy(),
+                    HomeRecommend()
+                  ],
+                ),
+                onLoad: () async {
+                  HomeProvide homeProvide = Provide.value<HomeProvide>(context);
+                  await homeProvide.getRecommendGoods();
+                  _controller.finishLoad(
+                      success: true,
+                      noMore: !homeProvide.recGoodsModel.hasMore);
+                },
+                footer: ClassicalFooter(
+                  bgColor: Colors.white,
+                  textColor: Colors.black,
+                  infoColor: Colors.black,
+                ),
+              );
+            } else {
+              return Center(
+                child: Text('数据请求失败'),
+              );
+            }
           });
         } else {
           return Center(

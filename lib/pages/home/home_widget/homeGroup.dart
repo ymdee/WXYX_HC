@@ -156,6 +156,8 @@ Widget _groupList(context, scrollController) {
                         color: Colors.black38,
                         fontSize: ScreenUtil().setSp(21),
                         decoration: TextDecoration.lineThrough),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                   ),
                 )
               ],

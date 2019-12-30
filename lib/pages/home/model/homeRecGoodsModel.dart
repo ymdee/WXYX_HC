@@ -286,8 +286,8 @@ class Comments {
   String content;
   int createTime;
   List<String> picList;
-  Null kfReplyTitle;
-  Null kfReplyContent;
+  String kfReplyTitle;
+  dynamic kfReplyContent;
   int memLevel;
   Null appendCommentVO;
   int star;
