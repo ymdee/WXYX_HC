@@ -12,13 +12,15 @@ import 'package:provide/provide.dart';
 import 'provide/indexProvide.dart';
 import 'provide/mineProvide.dart';
 import 'provide/homeProvide.dart';
+import 'provide/categoryProvide.dart';
 
 void main() {
   //注册provider
   final providers = Providers()
     ..provide(Provider.function((context) => IndexState()))
     ..provide(Provider.function((context) => MineProvide()))
-    ..provide(Provider.function((context) => HomeProvide()));
+    ..provide(Provider.function((context) => HomeProvide()))
+    ..provide(Provider.function((context) => CategoryProvide()));
 
   runApp(ProviderNode(
     child: MyApp(),
