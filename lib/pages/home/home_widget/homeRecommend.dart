@@ -49,6 +49,10 @@ class HomeRecommend extends StatelessWidget {
   }
 
   Widget _item(item) {
+    if (item == null) {
+      return SizedBox(height: 0,);
+    }
+
     List<Widget> widgetList = [];
 
     //图片
@@ -67,7 +71,7 @@ class HomeRecommend extends StatelessWidget {
           }));
 
       //Image.network(item.listPicUrl));
-    } else {
+    } else if (item is PinItem){
       widgetList.add(CachedNetworkImage(
           imageUrl: item.picUrl,
           placeholder: (context, url) {

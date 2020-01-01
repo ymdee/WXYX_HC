@@ -1,8 +1,8 @@
 
 class HomeRecGoodsModel {
   List<RcmdItemList> rcmdItemList;
-  Null rcmdVer;
-  Null title;
+  dynamic rcmdVer;
+  dynamic title;
   int type;
   bool hasMore;
 
@@ -37,7 +37,7 @@ class HomeRecGoodsModel {
 
 class RcmdItemList {
   int type;
-  Null indexRcmdPic;
+  dynamic indexRcmdPic;
   CategoryItem categoryItem;
   PinItem pinItem;
   int id;
@@ -93,9 +93,9 @@ class CategoryItem {
   String limitedTag;
   String productPlace;
   List<ItemTagList> itemTagList;
-  Null goodRate;
-  Null heat;
-  Null repoCount;
+  dynamic goodRate;
+  dynamic heat;
+  dynamic repoCount;
   String scenePicUrl;
   bool freshman;
   bool appExclusiveFlag;
@@ -104,9 +104,9 @@ class CategoryItem {
   String specTag;
   List<Comments> comments;
   Map promBanner;
-  Null promLogo;
-  Null promDesc;
-  Null couponTag;
+  dynamic promLogo;
+  dynamic promDesc;
+  dynamic couponTag;
   dynamic couponPrice;
   bool limitedSingleProm;
 
@@ -250,7 +250,7 @@ class ItemTagList {
   int type;
   String name;
   String itemTag;
-  Null itemTagType;
+  dynamic itemTagType;
   bool freshmanExclusive;
 
   ItemTagList(
@@ -289,7 +289,7 @@ class Comments {
   String kfReplyTitle;
   dynamic kfReplyContent;
   int memLevel;
-  Null appendCommentVO;
+  dynamic appendCommentVO;
   int star;
 
   Comments(
