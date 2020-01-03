@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:wyyx_hc/pages/home/model/homeModel.dart';
+import 'package:wyyx_hc/router/application.dart';
 import '../../../provide/homeProvide.dart';
 import '../../../base/baseProcessBar.dart';
 import '../model/homeGroupModel.dart';
@@ -124,6 +125,7 @@ Widget _groupList(context, scrollController) {
     return InkWell(
       onTap: () {
         //点击商品
+        Application.router.navigateTo(context, '/detail?id=${item.itemId}');
       },
       child: Container(
         padding: EdgeInsets.only(right: 10),

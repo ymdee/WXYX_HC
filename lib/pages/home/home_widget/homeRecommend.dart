@@ -5,6 +5,7 @@ import 'package:provide/provide.dart';
 import 'package:wyyx_hc/pages/home/model/homeRecGoodsModel.dart';
 import '../../../provide/homeProvide.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:wyyx_hc/router/application.dart';
 
 class HomeRecommend extends StatelessWidget {
   @override
@@ -38,8 +39,10 @@ class HomeRecommend extends StatelessWidget {
         crossAxisCount: 4,
         itemCount: homeRecGoodsModel.rcmdItemList.length,
         itemBuilder: (BuildContext context, int index) => new Container(
-          child: _item(homeRecGoodsModel.rcmdItemList[index].categoryItem ??
-              homeRecGoodsModel.rcmdItemList[index].pinItem),
+          child: _item(
+              context,
+              homeRecGoodsModel.rcmdItemList[index].categoryItem ??
+                  homeRecGoodsModel.rcmdItemList[index].pinItem),
         ),
         staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
         mainAxisSpacing: 10,
@@ -48,9 +51,11 @@ class HomeRecommend extends StatelessWidget {
     );
   }
 
-  Widget _item(item) {
+  Widget _item(context, item) {
     if (item == null) {
-      return SizedBox(height: 0,);
+      return SizedBox(
+        height: 0,
+      );
     }
 
     List<Widget> widgetList = [];
@@ -71,7 +76,7 @@ class HomeRecommend extends StatelessWidget {
           }));
 
       //Image.network(item.listPicUrl));
-    } else if (item is PinItem){
+    } else if (item is PinItem) {
       widgetList.add(CachedNetworkImage(
           imageUrl: item.picUrl,
           placeholder: (context, url) {
@@ -252,18 +257,22 @@ class HomeRecommend extends StatelessWidget {
       ));
     }
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          //borderRadius: BorderRadius.circular(15),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: widgetList,
-        ),
-      ),
-    );
+    return InkWell(
+        onTap: () {
+          Application.router.navigateTo(context, '/detail?id=${item.itemId}');
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              //borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: widgetList,
+            ),
+          ),
+        ));
   }
 }

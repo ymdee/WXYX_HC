@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   EasyRefreshController _controller;
+  Future _loadData;//防止重复请求
 
   @override
   bool get wantKeepAlive => true;
@@ -28,13 +29,15 @@ class _HomePageState extends State<HomePage>
     _controller = EasyRefreshController();
     super.initState();
 
-    //   WidgetsBinding.instance.addPostFrameCallback((callback) {
-    //     WidgetsBinding.instance.addPersistentFrameCallback((callback) {
-    //       print("addPersistentFrameCallback be invoke");
-    //       //触发一帧的绘制
-    //       WidgetsBinding.instance.scheduleFrame();
-    //     });
-    //   });
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      _loadData = _getHomeData(context);//context在返回frame后可用
+
+      // WidgetsBinding.instance.addPersistentFrameCallback((callback) {
+      //   print("addPersistentFrameCallback be invoke");
+      //   //触发一帧的绘制
+      //   WidgetsBinding.instance.scheduleFrame();
+      // });
+    });
   }
 
   @override
@@ -44,53 +47,62 @@ class _HomePageState extends State<HomePage>
 
     return Scaffold(
         body: FutureBuilder(
-      future: _getHomeData(context),
+      future: _loadData,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Provide<HomeProvide>(builder: (context, child, val) {
-            HomeProvide homeProvide = Provide.value<HomeProvide>(context);
-
-            if (homeProvide.homeModel != null &&
-                homeProvide.groupModel != null &&
-                homeProvide.recGoodsModel != null) {
-              return EasyRefresh(
-                enableControlFinishLoad: true,
-                controller: _controller,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    HomeSearchBar(),
-                    HomeBanner(),
-                    HomeTopNavi(),
-                    HomeGroup(),
-                    HomeTimeBuy(),
-                    HomeRecommend()
-                  ],
-                ),
-                onLoad: () async {
-                  HomeProvide homeProvide = Provide.value<HomeProvide>(context);
-                  await homeProvide.getRecommendGoods();
-                  _controller.finishLoad(
-                      success: true,
-                      noMore: !homeProvide.recGoodsModel.hasMore);
-                },
-                footer: ClassicalFooter(
-                  bgColor: Colors.white,
-                  textColor: Colors.black,
-                  infoColor: Colors.black,
-                ),
-              );
-            } else {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          case ConnectionState.done:
+            if (snapshot.hasError) {
               return Center(
-                child: Text('数据请求失败'),
+                child: Text('网络请求出错'),
               );
             }
-          });
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+
+            return Provide<HomeProvide>(builder: (context, child, val) {
+              HomeProvide homeProvide = Provide.value<HomeProvide>(context);
+
+              if (homeProvide.homeModel != null &&
+                  homeProvide.groupModel != null &&
+                  homeProvide.recGoodsModel != null) {
+                return EasyRefresh(
+                  enableControlFinishLoad: true,
+                  controller: _controller,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: <Widget>[
+                      HomeSearchBar(),
+                      HomeBanner(),
+                      HomeTopNavi(),
+                      HomeGroup(),
+                      HomeTimeBuy(),
+                      HomeRecommend()
+                    ],
+                  ),
+                  onLoad: () async {
+                    HomeProvide homeProvide =
+                        Provide.value<HomeProvide>(context);
+                    await homeProvide.getRecommendGoods();
+                    _controller.finishLoad(
+                        success: true,
+                        noMore: !homeProvide.recGoodsModel.hasMore);
+                  },
+                  footer: ClassicalFooter(
+                    bgColor: Colors.white,
+                    textColor: Colors.black,
+                    infoColor: Colors.black,
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Text('数据解析失败'),
+                );
+              }
+            });
         }
+        return null;
       },
     ));
   }

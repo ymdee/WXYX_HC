@@ -4,6 +4,7 @@ import 'package:provide/provide.dart';
 import 'package:wyyx_hc/pages/home/model/homeModel.dart';
 import '../../../provide/homeProvide.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:wyyx_hc/router/application.dart';
 
 class HomeTimeBuy extends StatefulWidget {
   @override
@@ -68,6 +69,7 @@ Widget _timeBuyList(context) {
     return InkWell(
       onTap: () {
         //点击商品
+        Application.router.navigateTo(context, '/detail?id=${item.itemId}');
       },
       child: Container(
         padding: EdgeInsets.only(right: 10),

@@ -8,6 +8,9 @@ const String api_search_count = '/search/displayBar.json';//搜索条数量
 const String api_rec = '/rcmd/index.json';//首页推荐
 const String api_group = '/item/recommendV2.json';//团购
 
+//商品详情
+const String api_goods_detail = '/item/detail.json';//商品详情
+
 //分类
 const String api_bigCategory = '/list/categorySimple.json';//大类
 const String api_subCategory = '/list/subCate.json';//子类

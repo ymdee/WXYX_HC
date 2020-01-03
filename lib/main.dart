@@ -13,6 +13,7 @@ import 'provide/indexProvide.dart';
 import 'provide/mineProvide.dart';
 import 'provide/homeProvide.dart';
 import 'provide/categoryProvide.dart';
+import 'provide/goodsDetailProvide.dart';
 
 void main() {
   //注册provider
@@ -20,7 +21,8 @@ void main() {
     ..provide(Provider.function((context) => IndexState()))
     ..provide(Provider.function((context) => MineProvide()))
     ..provide(Provider.function((context) => HomeProvide()))
-    ..provide(Provider.function((context) => CategoryProvide()));
+    ..provide(Provider.function((context) => CategoryProvide()))
+    ..provide(Provider.function((context) => GoodsDetailProvide()));
 
   runApp(ProviderNode(
     child: MyApp(),

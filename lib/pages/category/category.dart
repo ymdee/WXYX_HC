@@ -5,7 +5,23 @@ import 'category_widget/categoryLeftList.dart';
 import 'category_widget/categoryBanner.dart';
 import 'category_widget/categoryItemlist.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends StatefulWidget {
+  @override
+  _CategoryPageState createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
+  Future _loadData;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      _loadData = _loadCategoryData(context);
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,15 +29,12 @@ class CategoryPage extends StatelessWidget {
           title: Text('分类'),
         ),
         body: FutureBuilder(
-          future: _loadData(context),
+          future: _loadData,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Provide<CategoryProvide>(builder: (context, child, val) {
                 return Row(
-                  children: <Widget>[
-                    CategotyLeftList(),
-                    CategoryItemList()
-                  ],
+                  children: <Widget>[CategotyLeftList(), CategoryItemList()],
                 );
               });
             } else {
@@ -33,7 +46,7 @@ class CategoryPage extends StatelessWidget {
         ));
   }
 
-  _loadData(context) async {
+  _loadCategoryData(context) async {
     await Provide.value<CategoryProvide>(context).loadBigCategory();
     return '完成';
   }

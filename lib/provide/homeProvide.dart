@@ -14,7 +14,7 @@ class HomeProvide with ChangeNotifier {
   int lastItemId = 0; //推荐最后一个商品id，分页需要
 
 //获取首页数据
-  getHomeData() async {
+  Future getHomeData() async {
     lastItemId = 0;
     searchCount = 0;
 

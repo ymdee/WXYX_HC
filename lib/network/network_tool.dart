@@ -80,7 +80,7 @@ Future networkGet(String url, {paramas}) async {
 
     if (response.statusCode == 200) {
       if (response.data['code'] == '200') {
-        print('请求成功:=================>\n${response.data['data']}');
+        print('$url 请求成功:=================>\n${response.data['data']}');
         var data = response.data['data'];
 
         return data;
@@ -112,7 +112,7 @@ Future networkGet(String url, {paramas}) async {
 
     if (response.statusCode == 200) {
       if (response.data['code'] == '200') {
-        print('请求成功:=================>\n${response.data['data']}');
+        print('$url 请求成功:=================>\n${response.data['data']}');
         var data = response.data['data'];
 
         return data;

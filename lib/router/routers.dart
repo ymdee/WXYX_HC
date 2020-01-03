@@ -8,11 +8,12 @@ class Routes {
   static String cartPage = '/cart';
 
   static void configureRoutes(Router router) {
+    //未找到方法
     router.notFoundHandler = new Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('ERROR===>ROUTE WAS NOT FONUND!!!!');
     });
 
-    //router.define(detailsPage, handler: detailsHandler);
+    router.define(detailsPage, handler: detailsHandler);
   }
 }
