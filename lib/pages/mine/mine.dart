@@ -52,6 +52,7 @@ class _MinePageState extends State<MinePage> {
 
   Future _loadMineData(BuildContext context) async {
     await Provide.value<MineProvide>(context).loadData();
+    setState(() {});
     return '成功';
   }
 }

@@ -18,9 +18,7 @@ GoodsDetailModel _$GoodsDetailModelFromJson(Map<String, dynamic> json) {
     json['status'] as int,
     json['soldOut'] as bool,
     json['underShelf'] as bool,
-    json['itemDetail'] == null
-        ? null
-        : ItemDetail.fromJson(json['itemDetail'] as Map<String, dynamic>),
+    json['itemDetail'] as Map<String, dynamic>,
     (json['attrList'] as List)
         ?.map((e) =>
             e == null ? null : AttrList.fromJson(e as Map<String, dynamic>))
@@ -157,25 +155,6 @@ Map<String, dynamic> _$GoodsDetailModelToJson(GoodsDetailModel instance) =>
       'staffRecommendEntrance': instance.staffRecommendEntrance,
       'shoppingReward': instance.shoppingReward,
       'shoppingRewardRule': instance.shoppingRewardRule,
-    };
-
-ItemDetail _$ItemDetailFromJson(Map<String, dynamic> json) {
-  return ItemDetail(
-    json['detailHtml'] as String,
-    json['picUrl1'] as String,
-    json['picUrl2'] as String,
-    json['picUrl3'] as String,
-    json['picUrl4'] as String,
-  );
-}
-
-Map<String, dynamic> _$ItemDetailToJson(ItemDetail instance) =>
-    <String, dynamic>{
-      'detailHtml': instance.detailHtml,
-      'picUrl1': instance.picUrl1,
-      'picUrl2': instance.picUrl2,
-      'picUrl3': instance.picUrl3,
-      'picUrl4': instance.picUrl4,
     };
 
 AttrList _$AttrListFromJson(Map<String, dynamic> json) {
@@ -398,7 +377,6 @@ Map<String, dynamic> _$ItemDiscountToJson(ItemDiscount instance) =>
       'couponSimpleList': instance.couponSimpleList,
     };
 
-
 BigPromotion _$BigPromotionFromJson(Map<String, dynamic> json) {
   return BigPromotion(
     json['bannerType'] as int,
@@ -407,7 +385,7 @@ BigPromotion _$BigPromotionFromJson(Map<String, dynamic> json) {
     json['promoTitle'] as String,
     json['promoSubTitle'] as String,
     json['status'] as int,
-    json['sellVolumePercent'] as int,
+    json['sellVolumePercent'].toDouble(),
     json['startTime'] as String,
     json['countdown'] as int,
     json['schemeUrl'] as String,

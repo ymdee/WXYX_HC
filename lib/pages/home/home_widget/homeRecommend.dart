@@ -259,7 +259,8 @@ class HomeRecommend extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Application.router.navigateTo(context, '/detail?id=${item.itemId}');
+          int id = (item is CategoryItem?item.id:item.itemId);
+          Application.router.navigateTo(context, '/detail?id=$id');
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),

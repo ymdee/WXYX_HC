@@ -37,7 +37,7 @@ part 'goodsDetailModel.g.dart';
   bool underShelf;
 
   @JsonKey(name: 'itemDetail')
-  ItemDetail itemDetail;
+  Map itemDetail;
 
   @JsonKey(name: 'attrList')
   List<AttrList> attrList;
@@ -167,33 +167,6 @@ part 'goodsDetailModel.g.dart';
   factory GoodsDetailModel.fromJson(Map<String, dynamic> srcJson) => _$GoodsDetailModelFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$GoodsDetailModelToJson(this);
-
-}
-
-  
-@JsonSerializable()
-  class ItemDetail extends Object {
-
-  @JsonKey(name: 'detailHtml')
-  String detailHtml;
-
-  @JsonKey(name: 'picUrl1')
-  String picUrl1;
-
-  @JsonKey(name: 'picUrl2')
-  String picUrl2;
-
-  @JsonKey(name: 'picUrl3')
-  String picUrl3;
-
-  @JsonKey(name: 'picUrl4')
-  String picUrl4;
-
-  ItemDetail(this.detailHtml,this.picUrl1,this.picUrl2,this.picUrl3,this.picUrl4,);
-
-  factory ItemDetail.fromJson(Map<String, dynamic> srcJson) => _$ItemDetailFromJson(srcJson);
-
-  Map<String, dynamic> toJson() => _$ItemDetailToJson(this);
 
 }
 
@@ -513,7 +486,7 @@ part 'goodsDetailModel.g.dart';
   int status;
 
   @JsonKey(name: 'sellVolumePercent')
-  int sellVolumePercent;
+  double sellVolumePercent;
 
   @JsonKey(name: 'startTime')
   String startTime;

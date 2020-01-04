@@ -48,6 +48,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   _loadCategoryData(context) async {
     await Provide.value<CategoryProvide>(context).loadBigCategory();
+    setState(() {});
     return '完成';
   }
 }

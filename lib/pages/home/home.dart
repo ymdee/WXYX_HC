@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   EasyRefreshController _controller;
-  Future _loadData;//防止重复请求
+  Future _loadData; //防止重复请求
 
   @override
   bool get wantKeepAlive => true;
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      _loadData = _getHomeData(context);//context在返回frame后可用
+      _loadData = _getHomeData(context); //context在返回frame后可用
 
       // WidgetsBinding.instance.addPersistentFrameCallback((callback) {
       //   print("addPersistentFrameCallback be invoke");
@@ -109,6 +109,7 @@ class _HomePageState extends State<HomePage>
 
   _getHomeData(context) async {
     await Provide.value<HomeProvide>(context).getHomeData();
+    setState(() {});
     return '完成';
   }
 }
