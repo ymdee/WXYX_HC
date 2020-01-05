@@ -7,6 +7,7 @@ import 'goodsDetail_widget/goodsDetailInfo.dart';
 import 'goodsDetail_widget/goodsAttrList.dart';
 import 'goodsDetail_widget/goodsDetailAdBanner.dart';
 import 'goodsDetail_widget/goodsDetailBottomBar.dart';
+import 'goodsDetail_widget/goodsDetailComment.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class GoodsDetail extends StatefulWidget {
@@ -52,6 +53,9 @@ class _GoodsDetailState extends State<GoodsDetail> {
                       child: GoodsDetailAdBanner(),
                     ),
                     SliverToBoxAdapter(
+                      child: GoodsDetailComment(),
+                    ),
+                    SliverToBoxAdapter(
                       child: GoodsDetailAttrlist(),
                     ),
                     SliverToBoxAdapter(
@@ -62,20 +66,8 @@ class _GoodsDetailState extends State<GoodsDetail> {
                     // SliverList(
                     //   delegate:
                     //       SliverChildBuilderDelegate((BuildContext context, int index) {
-                    //     //偶数加载标题栏，奇数加载GridView
-                    //     if (index.isOdd) {
-                    //       return _listCell(context, index ~/ 2);
-                    //     } else {
-                    //       final subCategoryList = categoryGroupList[index ~/ 2];
-
-                    //       if (subCategoryList.name.length != 0) {
-                    //         return _sectionHeader(subCategoryList);
-                    //       } else {
-                    //         return SizedBox(
-                    //           height: 0,
-                    //         );
-                    //       }
-                    //     }
+                    //     //这里可以写推荐商品，参考类别页面实现
+                    //    
                     //   }, childCount: itemCount),
                     // )
                   ],
