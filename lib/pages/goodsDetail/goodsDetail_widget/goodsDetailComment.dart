@@ -122,7 +122,7 @@ class GoodsDetailComment extends StatelessWidget {
     var date = DateTime.fromMillisecondsSinceEpoch(comments.createTime);
 
     return Container(
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 20,right: 20),
       child: Text(
         '${date.toString() + '   ' + spec}',
         style:
@@ -137,7 +137,7 @@ class GoodsDetailComment extends StatelessWidget {
     Comments comments = goodsDetailModel.comments.first;
 
     return Container(
-      padding: EdgeInsets.only(left: 20, top: 12),
+      padding: EdgeInsets.only(left: 20, top: 12,right: 20),
       child: Text(
         '${comments.content}',
         style: TextStyle(fontSize: ScreenUtil().setSp(26)),
