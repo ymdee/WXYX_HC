@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
       ],
       title: '网易严选(仿)',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: Application.router.generator,
       theme: ThemeData(
           primaryColor: Colors.white,
           focusColor: Colors.white,

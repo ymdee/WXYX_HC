@@ -37,46 +37,46 @@ class _GoodsDetailState extends State<GoodsDetail> {
               builder: (context, child, val) {
                 return Stack(
                   children: <Widget>[
-                                    CustomScrollView(
-                  controller: _scrollController,
-                  slivers: <Widget>[
-                    SliverToBoxAdapter(
-                      child: GoodsDetailBanner(),
+                    CustomScrollView(
+                      controller: _scrollController,
+                      slivers: <Widget>[
+                        SliverToBoxAdapter(
+                          child: GoodsDetailBanner(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: GoodsDetailHeader(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: GoodsDetailInfo(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: GoodsDetailAdBanner(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: GoodsDetailComment(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: GoodsDetailAttrlist(),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Html(
+                            data: val.goodsDetailModel.itemDetail['detailHtml'],
+                          ),
+                        ),
+                        // SliverList(
+                        //   delegate:
+                        //       SliverChildBuilderDelegate((BuildContext context, int index) {
+                        //     //这里可以写推荐商品，参考类别页面实现
+                        //
+                        //   }, childCount: itemCount),
+                        // )
+                      ],
                     ),
-                    SliverToBoxAdapter(
-                      child: GoodsDetailHeader(),
-                    ),
-                    SliverToBoxAdapter(
-                      child: GoodsDetailInfo(),
-                    ),
-                    SliverToBoxAdapter(
-                      child: GoodsDetailAdBanner(),
-                    ),
-                    SliverToBoxAdapter(
-                      child: GoodsDetailComment(),
-                    ),
-                    SliverToBoxAdapter(
-                      child: GoodsDetailAttrlist(),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Html(
-                        data: val.goodsDetailModel.itemDetail['detailHtml'],
-                      ),
-                    ),
-                    // SliverList(
-                    //   delegate:
-                    //       SliverChildBuilderDelegate((BuildContext context, int index) {
-                    //     //这里可以写推荐商品，参考类别页面实现
-                    //    
-                    //   }, childCount: itemCount),
-                    // )
-                  ],
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: GoodsDetailBottomBar(),
-                )
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: GoodsDetailBottomBar(),
+                    )
                   ],
                 );
               },
